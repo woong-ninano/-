@@ -4,8 +4,8 @@ import InfoSection from './components/InfoSection';
 import { SectionData } from './types';
 
 const App: React.FC = () => {
-  // 더 표준적인 GitHub Raw URL 형식으로 변경
-  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/";
+  // 사용자의 원본 코드 경로인 refs/heads/main 형식을 사용하여 이미지 로드 문제를 해결합니다.
+  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/";
   const [footerLogoError, setFooterLogoError] = useState(false);
 
   const mainSection: SectionData = {
@@ -16,8 +16,8 @@ const App: React.FC = () => {
         description: "기존의 복잡한 가입 프로세스를 3단계로 파격적으로 단축했습니다. 고객의 시선 이동을 고려한 카드 타입 레이아웃으로 가독성을 40% 이상 향상시켰습니다.",
         subDescription: "사용자 중심의 UX 설계를 통해 가입 도중 이탈률이 기존 대비 25% 감소하는 성과를 거두었습니다.",
         images: [
-          `${imageBaseUrl}content_ux_01.png`,
-          `${imageBaseUrl}content_ux_02.png`
+          `${imageBaseUrl}01_01.png`,
+          `${imageBaseUrl}01_02.png`
         ]
       },
       {
@@ -25,9 +25,12 @@ const App: React.FC = () => {
         description: "고도화된 추천 알고리즘을 도입하여, 고객의 라이프스타일과 연령대를 분석한 초개인화 상품 제안 기능을 구현했습니다.",
         subDescription: "단순 상품 나열이 아닌, 나에게 꼭 필요한 특약만을 선별하여 제안함으로써 고객 만족도를 극대화했습니다.",
         images: [
-          `${imageBaseUrl}content_data_01.png`,
-          `${imageBaseUrl}content_data_02.png`,
-          `${imageBaseUrl}content_data_03.png`
+          `${imageBaseUrl}02_01.png`,
+          `${imageBaseUrl}02_02.png`,
+          `${imageBaseUrl}02_03.png`,
+          `${imageBaseUrl}02_04.png`,
+          `${imageBaseUrl}02_05.png`,
+          `${imageBaseUrl}02_06.png`
         ]
       },
       {
@@ -91,7 +94,7 @@ const App: React.FC = () => {
               <img 
                 src={footerLogoUrl} 
                 alt="현대해상 다이렉트" 
-                className="h-8 md:h-10 object-contain"
+                className="h-8 md:h-9 object-contain"
                 onError={() => {
                   console.error("Footer Logo failed to load", footerLogoUrl);
                   setFooterLogoError(true);
@@ -99,7 +102,7 @@ const App: React.FC = () => {
               />
             ) : (
               <div className="text-[#004a99] font-bold text-2xl tracking-tight">
-                현대해상 <span className="text-orange-500">다이렉트</span>
+                현대해상 <span className="text-[#ff6a00]">다이렉트</span>
               </div>
             )}
           </div>
