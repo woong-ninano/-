@@ -12,8 +12,9 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 사용자의 원본 코드에 명시되었던 refs/heads/main 경로를 우선 사용합니다.
-  const logoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/img_logo_ty1.png";
+  // GitHub Raw 이미지의 표준 경로 (main 브랜치)
+  // 캐시 문제 방지를 위해 쿼리 파라미터를 추가할 수 있으나, 여기서는 표준 URL을 사용합니다.
+  const logoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/img_logo_ty1.png";
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
@@ -26,14 +27,14 @@ const Header: React.FC = () => {
               alt="현대해상 다이렉트" 
               className="h-6 md:h-7 object-contain"
               onError={() => {
-                console.warn("Header Logo failed to load with primary URL, trying fallback...");
+                console.warn("Header Logo load failed, using fallback UI");
                 setLogoError(true);
               }}
             />
           ) : (
-            <div className="flex items-center gap-2">
-              <span className="text-[#004a99] font-bold text-xl tracking-tight">
-                현대해상 <span className="text-[#ff6a00]">다이렉트</span>
+            <div className="flex items-center">
+              <span className="text-[#004a99] font-bold text-xl md:text-2xl tracking-tighter">
+                HYUNDAI <span className="text-[#ff6a00]">DIRECT</span>
               </span>
             </div>
           )}

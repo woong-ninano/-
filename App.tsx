@@ -4,8 +4,8 @@ import InfoSection from './components/InfoSection';
 import { SectionData } from './types';
 
 const App: React.FC = () => {
-  // 사용자의 원본 코드 경로인 refs/heads/main 형식을 사용하여 이미지 로드 문제를 해결합니다.
-  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/";
+  // GitHub Raw 이미지 베이스 경로 (main 브랜치 표준 형식)
+  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/";
   const [footerLogoError, setFooterLogoError] = useState(false);
 
   const mainSection: SectionData = {
@@ -54,7 +54,8 @@ const App: React.FC = () => {
     ]
   };
 
-  const footerLogoUrl = `${imageBaseUrl}img_logo_ty1.png`;
+  // 푸터 로고 URL - 슬래시 중복 등을 방지하기 위해 정규화된 URL 사용
+  const footerLogoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/img_logo_ty1.png";
 
   return (
     <div className="min-h-screen bg-white">
@@ -96,13 +97,13 @@ const App: React.FC = () => {
                 alt="현대해상 다이렉트" 
                 className="h-8 md:h-9 object-contain"
                 onError={() => {
-                  console.error("Footer Logo failed to load", footerLogoUrl);
+                  console.error("Footer Logo failed to load:", footerLogoUrl);
                   setFooterLogoError(true);
                 }}
               />
             ) : (
-              <div className="text-[#004a99] font-bold text-2xl tracking-tight">
-                현대해상 <span className="text-[#ff6a00]">다이렉트</span>
+              <div className="text-[#004a99] font-bold text-2xl tracking-tighter">
+                HYUNDAI <span className="text-[#ff6a00]">DIRECT</span>
               </div>
             )}
           </div>
