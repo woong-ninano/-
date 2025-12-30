@@ -5,10 +5,7 @@ import MetricChart from './components/MetricChart';
 import { SectionData, MetricData } from './types';
 
 const App: React.FC = () => {
-  // 기본 경로는 images로 설정하되, 컨텐츠 이미지 로딩 실패 시 처리는 InfoSection에서 담당하거나
-  // 혹은 사용자가 확신하는 경로인 'images'를 유지합니다.
-  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/";
-  const [footerLogoPathType, setFooterLogoPathType] = useState<'images' | 'image' | 'error'>('images');
+  const [footerLogoError, setFooterLogoError] = useState(false);
 
   const mainSection: SectionData = {
     id: 'main-experience',
@@ -18,8 +15,8 @@ const App: React.FC = () => {
         description: "기존의 복잡한 가입 프로세스를 3단계로 파격적으로 단축했습니다. 고객의 시선 이동을 고려한 카드 타입 레이아웃으로 가독성을 40% 이상 향상시켰습니다.",
         subDescription: "사용자 중심의 UX 설계를 통해 가입 도중 이탈률이 기존 대비 25% 감소하는 성과를 거두었습니다.",
         images: [
-          `${imageBaseUrl}01_01.png`,
-          `${imageBaseUrl}01_02.png`
+          "https://i.ibb.co/7dyCCtcy/01-01.png",
+          "https://i.ibb.co/xSLZK6k6/01-02.png"
         ]
       },
       {
@@ -27,28 +24,28 @@ const App: React.FC = () => {
         description: "고도화된 추천 알고리즘을 도입하여, 고객의 라이프스타일과 연령대를 분석한 초개인화 상품 제안 기능을 구현했습니다.",
         subDescription: "단순 상품 나열이 아닌, 나에게 꼭 필요한 특약만을 선별하여 제안함으로써 고객 만족도를 극대화했습니다.",
         images: [
-          `${imageBaseUrl}02_01.png`,
-          `${imageBaseUrl}02_02.png`,
-          `${imageBaseUrl}02_03.png`,
-          `${imageBaseUrl}02_04.png`,
-          `${imageBaseUrl}02_05.png`,
-          `${imageBaseUrl}02_06.png`
+          "https://i.ibb.co/Y7qpVxDx/02-01.png",
+          "https://i.ibb.co/Xx8dgzgm/02-02.png",
+          "https://i.ibb.co/YFXq9SCf/02-03.png",
+          "https://i.ibb.co/ksSxdx1r/02-04.png",
+          "https://i.ibb.co/bjgH2MRB/02-05.png",
+          "https://i.ibb.co/23HC7dtB/02-06.png"
         ]
       },
       {
         title: "언제 어디서나\n끊김 없는 모바일 경험",
         description: "모바일 환경에 최적화된 리액티브 아키텍처를 적용했습니다. 저사양 기기에서도 매끄러운 동작을 보장하며, 페이지 로딩 속도를 평균 1.5초 이내로 단축했습니다.",
         images: [
-          `${imageBaseUrl}content_mobile_01.png`,
-          `${imageBaseUrl}content_mobile_02.png`
+          "https://i.ibb.co/7dyCCtcy/01-01.png", // 대체 이미지 (제공된 URL 중 활용)
+          "https://i.ibb.co/xSLZK6k6/01-02.png"
         ]
       },
       {
         title: "보안은 더 강력하게\n인증은 더 간편하게",
         description: "생체 인증과 간편 비밀번호 시스템을 전면 도입하여 번거로운 공인인증서 없는 보안 환경을 구축했습니다. 모든 데이터는 최신 암호화 기술로 보호됩니다.",
         images: [
-          `${imageBaseUrl}content_security_01.png`,
-          `${imageBaseUrl}content_security_02.png`
+          "https://i.ibb.co/ksSxdx1r/02-04.png", // 대체 이미지 (제공된 URL 중 활용)
+          "https://i.ibb.co/bjgH2MRB/02-05.png"
         ]
       }
     ]
@@ -66,15 +63,7 @@ const App: React.FC = () => {
     { name: '추천 의향', value: 88 },
   ];
 
-  const handleFooterLogoError = () => {
-    if (footerLogoPathType === 'images') {
-      setFooterLogoPathType('image');
-    } else if (footerLogoPathType === 'image') {
-      setFooterLogoPathType('error');
-    }
-  };
-
-  const footerLogoUrl = `https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/${footerLogoPathType === 'error' ? 'images' : footerLogoPathType}/img_logo_ty1.png`;
+  const footerLogoUrl = "https://i.ibb.co/k2Yn9STr/img-logo-ty1.png";
 
   return (
     <div className="min-h-screen bg-white">
@@ -124,12 +113,12 @@ const App: React.FC = () => {
       <footer className="bg-white py-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex justify-center items-center mb-8 h-12">
-            {footerLogoPathType !== 'error' ? (
+            {!footerLogoError ? (
               <img 
                 src={footerLogoUrl} 
                 alt="현대해상 다이렉트" 
                 className="h-9 md:h-10 object-contain"
-                onError={handleFooterLogoError}
+                onError={() => setFooterLogoError(true)}
               />
             ) : (
               <div className="text-[#004a99] font-bold text-2xl tracking-tighter">
