@@ -64,10 +64,10 @@ const App: React.FC = () => {
       <section id="hero" className="relative h-screen flex items-center justify-center bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center z-10">
           <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-[#004a99] uppercase bg-blue-50 rounded-full">
-            Completion Report 2024
+            Completion Report 2025
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-[1.1] tracking-tight">
-            현대해상 <span className="text-[#004a99]">Direct</span><br />
+            현대해상 다이렉트<br />
             디지털 혁신의 시작
           </h1>
           <p className="max-w-2xl mx-auto text-xl md:text-2xl text-gray-400 font-light leading-relaxed">
