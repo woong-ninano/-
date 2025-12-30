@@ -11,8 +11,8 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // GitHub Raw 이미지 URL로 변환하여 적용
-  const logoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/img_logo_ty1.png";
+  // 로컬 images 폴더의 로고 경로
+  const logoUrl = "./images/img_logo_ty1.png";
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
@@ -23,6 +23,10 @@ const Header: React.FC = () => {
             src={logoUrl} 
             alt="현대해상 다이렉트" 
             className="h-7 md:h-8 object-contain"
+            onError={(e) => {
+              // 이미지 로드 실패 시 텍스트로 대체 표시 (업로드 전 대비)
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         </div>
 
