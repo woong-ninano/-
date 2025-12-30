@@ -51,7 +51,7 @@ const App: React.FC = () => {
   };
 
   // 제공해주신 새로운 로고 이미지 URL 적용
-  const footerLogoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/img_logo_ty1.png";
+  const footerLogoUrl = "${imageBaseUrl}img_logo_ty1.png";
 
   return (
     <div className="min-h-screen bg-white">

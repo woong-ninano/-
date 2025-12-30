@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   }, []);
 
   // 제공해주신 새로운 로고 이미지 URL 적용
-  const logoUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/img_logo_ty1.png";
+  const logoUrl = "${imageBaseUrl}img_logo_ty1.png";
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
