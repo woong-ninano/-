@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import InfoSection from './components/InfoSection';
 import { SectionData } from './types';
 
 const App: React.FC = () => {
-  // GitHub 이미지 베이스 경로
-  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/refs/heads/main/images/";
+  // 더 표준적인 GitHub Raw URL 형식으로 변경
+  const imageBaseUrl = "https://raw.githubusercontent.com/woong-ninano/hyundai-finish/main/images/";
+  const [footerLogoError, setFooterLogoError] = useState(false);
 
   const mainSection: SectionData = {
     id: 'main-experience',
@@ -50,8 +51,7 @@ const App: React.FC = () => {
     ]
   };
 
-  // 제공해주신 새로운 로고 이미지 URL 적용
-  const footerLogoUrl = "${imageBaseUrl}img_logo_ty1.png";
+  const footerLogoUrl = `${imageBaseUrl}img_logo_ty1.png`;
 
   return (
     <div className="min-h-screen bg-white">
@@ -87,11 +87,21 @@ const App: React.FC = () => {
       <footer className="bg-white py-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex justify-center items-center mb-8">
-            <img 
-              src={footerLogoUrl} 
-              alt="현대해상 다이렉트" 
-              className="h-8 md:h-10 object-contain"
-            />
+            {!footerLogoError ? (
+              <img 
+                src={footerLogoUrl} 
+                alt="현대해상 다이렉트" 
+                className="h-8 md:h-10 object-contain"
+                onError={() => {
+                  console.error("Footer Logo failed to load", footerLogoUrl);
+                  setFooterLogoError(true);
+                }}
+              />
+            ) : (
+              <div className="text-[#004a99] font-bold text-2xl tracking-tight">
+                현대해상 <span className="text-orange-500">다이렉트</span>
+              </div>
+            )}
           </div>
           <p className="text-gray-500 max-w-lg mx-auto leading-relaxed mb-12">
             현대해상 다이렉트 보험 플랫폼 고도화 구축<br />
