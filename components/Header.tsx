@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 
         {/* Right: Project Title */}
         <div className="text-right">
-          <span className={`text-sm md:text-base font-medium transition-colors duration-500 ${isScrolled ? 'text-gray-700' : 'text-gray-500'}`}>
+          <span className="text-sm md:text-base font-medium transition-colors duration-500 text-[#000000]">
             다이렉트 보험 플랫폼 고도화 구축
           </span>
         </div>
